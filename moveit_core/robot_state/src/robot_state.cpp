@@ -1408,6 +1408,7 @@ bool RobotState::setFromIK(const JointModelGroup* jmg, const EigenSTL::vector_Af
                            double timeout, const GroupStateValidityCallbackFn& constraint,
                            const kinematics::KinematicsQueryOptions& options)
 {
+  std::cout << "RobotState::setFromIK called" << std::endl;
   // Error check
   if (poses_in.size() != tips_in.size())
   {
@@ -1606,6 +1607,9 @@ bool RobotState::setFromIK(const JointModelGroup* jmg, const EigenSTL::vector_Af
   if (timeout < std::numeric_limits<double>::epsilon())
     timeout = jmg->getDefaultIKTimeout();
 
+  std::cout << "attempts on line 1610: " << attempts << std::endl;
+  std::cout << "timeout after default set: " << timeout << std::endl;
+
   if (attempts == 0)
     attempts = jmg->getDefaultIKAttempts();
 
@@ -1619,6 +1623,7 @@ bool RobotState::setFromIK(const JointModelGroup* jmg, const EigenSTL::vector_Af
 
   bool first_seed = true;
   std::vector<double> initial_values;
+  std::cout << "calling ik on line 1623 robot_state.cpp: " << attempts << std::endl;
   for (unsigned int st = 0; st < attempts; ++st)
   {
     std::vector<double> seed(bij.size());
@@ -1876,6 +1881,7 @@ double RobotState::computeCartesianPath(const JointModelGroup* group, std::vecto
                                         const GroupStateValidityCallbackFn& validCallback,
                                         const kinematics::KinematicsQueryOptions& options)
 {
+  std::cout << "in compute cartesian path on line 1880" << std::endl;
   // this is the Cartesian pose we start from, and have to move in the direction indicated
   const Eigen::Affine3d& start_pose = getGlobalLinkTransform(link);
 
@@ -1898,6 +1904,7 @@ double RobotState::computeCartesianPath(const JointModelGroup* group, std::vecto
                                         const GroupStateValidityCallbackFn& validCallback,
                                         const kinematics::KinematicsQueryOptions& options)
 {
+  std::cout << "in RobotState::computeCartesianPath for individual segment" << std::endl;
   const std::vector<const JointModel*>& cjnt = group->getContinuousJointModels();
   // make sure that continuous joints wrap
   for (std::size_t i = 0; i < cjnt.size(); ++i)

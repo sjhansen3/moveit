@@ -934,6 +934,7 @@ public:
                               moveit_msgs::RobotTrajectory& msg, const moveit_msgs::Constraints& path_constraints,
                               bool avoid_collisions, moveit_msgs::MoveItErrorCodes& error_code)
   {
+    std::cout << "in computeCartesianPath in move_group_interface.cpp line 937" << std::endl;
     moveit_msgs::GetCartesianPath::Request req;
     moveit_msgs::GetCartesianPath::Response res;
 
@@ -1579,6 +1580,7 @@ double moveit::planning_interface::MoveGroupInterface::computeCartesianPath(
     const std::vector<geometry_msgs::Pose>& waypoints, double eef_step, double jump_threshold,
     moveit_msgs::RobotTrajectory& trajectory, bool avoid_collisions, moveit_msgs::MoveItErrorCodes* error_code)
 {
+  std::cout << "in computeCartesianPath in move_group_interface.cpp line 1583" << std::endl;
   moveit_msgs::Constraints path_constraints_tmp;
   return computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory, path_constraints_tmp, avoid_collisions,
                               error_code);
@@ -1589,6 +1591,7 @@ double moveit::planning_interface::MoveGroupInterface::computeCartesianPath(
     moveit_msgs::RobotTrajectory& trajectory, const moveit_msgs::Constraints& path_constraints, bool avoid_collisions,
     moveit_msgs::MoveItErrorCodes* error_code)
 {
+  std::cout << "in computeCartesianPath in move_group_interface.cpp line 1593" << std::endl;
   if (error_code)
   {
     return impl_->computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory, path_constraints,

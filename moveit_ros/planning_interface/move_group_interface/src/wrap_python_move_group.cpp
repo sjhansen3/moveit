@@ -428,6 +428,7 @@ public:
   bp::tuple computeCartesianPathPython(const bp::list& waypoints, double eef_step, double jump_threshold,
                                        bool avoid_collisions)
   {
+    std::cout << "in computeCartesianPathPython binding" << std::endl;
     moveit_msgs::Constraints path_constraints_tmp;
     return doComputeCartesianPathPython(waypoints, eef_step, jump_threshold, avoid_collisions, path_constraints_tmp);
   }
@@ -435,6 +436,7 @@ public:
   bp::tuple computeCartesianPathConstrainedPython(const bp::list& waypoints, double eef_step, double jump_threshold,
                                                   bool avoid_collisions, const std::string& path_constraints_str)
   {
+    std::cout << "in computeCartesianPathConstrainedPython binding" << std::endl;
     moveit_msgs::Constraints path_constraints;
     py_bindings_tools::deserializeMsg(path_constraints_str, path_constraints);
     return doComputeCartesianPathPython(waypoints, eef_step, jump_threshold, avoid_collisions, path_constraints);
